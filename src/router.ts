@@ -6,6 +6,13 @@ import { listCategories } from './app/useCases/categories/listCategories';
 import { createCategory } from './app/useCases/categories/createCategories'
 import { listProducts } from './app/useCases/products/listProducts'
 import { createProducts } from './app/useCases/products/createProducts';
+import { listProductByCategories } from './app/useCases/categories/listProductByCategories'
+import { listOrders } from './app/useCases/orders/listOrders'
+import { createOrder } from './app/useCases/orders/createOrders'
+import { changeOrderStatus } from './app/useCases/orders/changeOrderStatus'
+import { cancelOrders } from './app/useCases/orders/cancelOrders'
+
+
 
 import { rotaDel } from './app/useCases/teste/rotaDel'
 
@@ -35,29 +42,20 @@ router.get('/products', listProducts)
 router.post('/products', uploads.single('image') , createProducts)
 
 //get product by category
-router.get('/categories/:categoryId/products', (req,res) => {
-  res.send('ok');
-})
+router.get('/categories/:categoryId/products', listProductByCategories)
 
 //list order
-router.get('/orders', (req,res) => {
-  res.send('ok');
-})
+router.get('/orders', listOrders)
 
 //create order
-router.post('/orders', (req,res) => {
-  res.send('ok');
-})
+router.post('/orders', createOrder)
 
 //change order status
-router.patch('/orders/:orderId', (req,res) => {
-  res.send('ok');
-})
+router.patch('/orders/:orderId', changeOrderStatus)
 
 //delete/cancel order
-router.delete('/orders/:orderId', (req,res) => {
-  res.send('ok');
-})
+router.delete('/orders/:orderId', cancelOrders)
 
+//eu que inventei moda
 //delete all
 router.post('/delete', rotaDel)
